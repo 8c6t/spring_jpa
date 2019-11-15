@@ -6,9 +6,11 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
+        format_sql: true
         jdbc:
           lob:
             non_contextual_creation: true
+    show-sql: true
