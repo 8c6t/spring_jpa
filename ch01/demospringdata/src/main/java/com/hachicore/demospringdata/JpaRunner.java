@@ -20,9 +20,31 @@ public class JpaRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         // persistence();
         // cascadeInsert();
+        // getPost();
+        // getComment();
+
         Session session = em.unwrap(Session.class);
-        Post post = session.get(Post.class, 1L);
-        session.delete(post);
+        Post post = session.get(Post.class, 4L);
+        System.out.println(post.getTitle());
+
+        post.getComments().forEach(c -> {
+            System.out.println("==============");
+            System.out.println(c.getComment());
+        });
+
+    }
+
+    private void getComment() {
+        Session session = em.unwrap(Session.class);
+        Comment comment = session.get(Comment.class, 5L);
+        System.out.println(comment.getComment());
+        System.out.println(comment.getPost().getTitle());
+    }
+
+    private void getPost() {
+        Session session = em.unwrap(Session.class);
+        Post post = session.get(Post.class, 4L);
+        System.out.println(post.getTitle());
     }
 
     private void cascadeInsert() {
