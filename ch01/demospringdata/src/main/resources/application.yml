@@ -14,3 +14,12 @@ spring:
           lob:
             non_contextual_creation: true
     show-sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+

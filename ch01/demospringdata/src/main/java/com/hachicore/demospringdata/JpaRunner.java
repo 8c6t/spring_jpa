@@ -16,9 +16,13 @@ public class JpaRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // postRepository.findAll().forEach(System.out::println);
-        System.out.println("=================");
-        System.out.println(hachicore.getName());
+        Post post = new Post();
+        post.setTitle("Spring");
+
+        Comment comment = new Comment();
+        comment.setComment("hello");
+
+        postRepository.save(post);
     }
 
 }
