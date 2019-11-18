@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class CommentRepositoryTest {
@@ -19,22 +15,14 @@ public class CommentRepositoryTest {
 
     @Test
     public void crud() throws Exception {
-      // given
-      Comment comment = new Comment();
-      comment.setComment("Hello Comment");
-      commentRepository.save(comment);
+//      Optional<Comment> byId = commentRepository.findById(100L);
+//      assertThat(byId).isEmpty();
+//      Comment comment = byId.orElseThrow(IllegalArgumentException::new);
 
-      // when
-      List<Comment> all = commentRepository.findAll();
+//      List<Comment> comments = commentRepository.findAll();
+//      assertThat(comments).isEmpty();
 
-      // then
-      assertThat(all.size()).isEqualTo(1);
-
-      // when
-      Long count = commentRepository.count();
-
-      // then
-      assertThat(count).isEqualTo(1);
+        commentRepository.save(null);
     }
 
 }
