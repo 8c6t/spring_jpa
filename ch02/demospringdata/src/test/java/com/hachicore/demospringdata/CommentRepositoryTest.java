@@ -15,14 +15,7 @@ public class CommentRepositoryTest {
 
     @Test
     public void crud() throws Exception {
-//      Optional<Comment> byId = commentRepository.findById(100L);
-//      assertThat(byId).isEmpty();
-//      Comment comment = byId.orElseThrow(IllegalArgumentException::new);
-
-//      List<Comment> comments = commentRepository.findAll();
-//      assertThat(comments).isEmpty();
-
-        commentRepository.save(null);
+//        commentRepository.save(null);
     }
 
 }
