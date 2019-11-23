@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Getter @Setter
 @Entity
+// @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post p WHERE p.title = ?1")
 public class Post {
 
     @Id @GeneratedValue
