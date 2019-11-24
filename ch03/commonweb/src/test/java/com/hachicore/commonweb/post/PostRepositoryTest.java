@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -56,9 +57,28 @@ public class PostRepositoryTest {
         assertThat(all.size()).isEqualTo(1);
     }
 
-    private void savePost() {
+    @Test
+    public void updateTitle() throws Exception {
+        Post spring = savePost();
+
+        String hibernate = "hibernate";
+        // updateQuery(spring, hibernate);
+        spring.setTitle(hibernate);
+        List<Post> all = postRepository.findAll();
+        assertThat(all.get(0).getTitle()).isEqualTo(hibernate);
+    }
+
+    private void updateQuery(Post spring, String hibernate) {
+        int update = postRepository.updateTitle(hibernate, spring.getId());
+        assertThat(update).isEqualTo(1);
+
+        Optional<Post> byId = postRepository.findById(spring.getId());
+        assertThat(byId.get().getTitle()).isEqualTo(hibernate);
+    }
+
+    private Post savePost() {
         Post post = new Post();
         post.setTitle("Spring");
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 }
