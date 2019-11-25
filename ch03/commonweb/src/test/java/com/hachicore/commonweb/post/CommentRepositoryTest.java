@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -34,6 +36,12 @@ public class CommentRepositoryTest {
             // System.out.println(c.getVotes());
             System.out.println(c.getComment());
         });
+    }
+
+    @Test
+    public void specs() throws Exception {
+        // commentRepository.findAll(CommentSpecs.isBest().and(CommentSpecs.isBest()));
+        Page<Comment> page = commentRepository.findAll(CommentSpecs.isBest(), PageRequest.of(0, 10));
     }
 
 }
