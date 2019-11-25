@@ -22,6 +22,9 @@ public class Comment {
 
     private String comment;
 
+    @Enumerated(EnumType.STRING)
+    private CommentStatus commentStatus;
+
     private int up;
 
     private int down;
