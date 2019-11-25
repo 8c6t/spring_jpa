@@ -13,11 +13,27 @@ public class CommentRepositoryTest {
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    PostRepository postRepository;
+
     @Test
     public void getComment() throws Exception {
-        commentRepository.getById(1L);
-        System.out.println("==============================");
-        commentRepository.findById(1L);
+        Post post = new Post();
+        post.setTitle("jpa");
+        Post savedPost = postRepository.save(post);
+
+        Comment comment = new Comment();
+        comment.setComment("spring data jpa projection");
+        comment.setUp(10);
+        comment.setDown(1);
+        comment.setPost(savedPost);
+        commentRepository.save(comment);
+
+        commentRepository.findByPost_Id(savedPost.getId(), CommentOnly.class).forEach(c-> {
+            System.out.println("============");
+            // System.out.println(c.getVotes());
+            System.out.println(c.getComment());
+        });
     }
 
 }
